@@ -81,7 +81,7 @@ if ( !class_exists( 'GRC_CPT_CT' ) ) {
 
     }
 
-    $GLOBALS['ssws'] = new GRC_CPT_CT();
+    $GLOBALS['grc'] = new GRC_CPT_CT();
 }
 
 ?>

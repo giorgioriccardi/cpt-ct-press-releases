@@ -39,6 +39,7 @@ function grc_custom_post_types() {
         'hierarchical'       => false,
         'menu_position'      => 5,
         'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
+        'show_in_rest'		 => true, // enable Gutenberg Editor for CPT
         'taxonomies'         => array( 
                                     // 'category',
                                     'post_tag' 

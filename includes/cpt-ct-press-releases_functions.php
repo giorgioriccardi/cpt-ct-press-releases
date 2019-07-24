@@ -1,11 +1,11 @@
 <?php
 // ########################################################
-// CPT Custom Post Types
+// SSWS CPT Custom Post Types
 // ########################################################
 
 // https://codex.wordpress.org/Function_Reference/register_post_type#Example
 
-function grc_custom_post_types() {
+function ssws_custom_post_types() {
 
     // press-releases CPT
     $labels = array(
@@ -50,7 +50,7 @@ function grc_custom_post_types() {
     // add here another CPT just duplicating and adapting the above code
 }
 
-add_action( 'init', 'grc_custom_post_types' );
+add_action( 'init', 'ssws_custom_post_types' );
 
 
 
@@ -102,12 +102,12 @@ add_action( 'init', 'grc_custom_taxonomies' );
 // Flush rewrite rules to add "press-releases-types" as a permalink slug
 /********************************************************/
 
-function my_rewrite_flush() {
-    grc_custom_post_types();
+function ssws_rewrite_flush() {
+    ssws_custom_post_types();
     flush_rewrite_rules();
 }
 
-register_activation_hook( __FILE__, 'my_rewrite_flush' );
+register_activation_hook( __FILE__, 'ssws_rewrite_flush' );
 
 // https://codex.wordpress.org/Function_Reference/register_post_type#Flushing_Rewrite_on_Activation
 
@@ -120,7 +120,7 @@ register_activation_hook( __FILE__, 'my_rewrite_flush' );
 // this snippet can be pasted within the custom plugin created to output the CPT,
 // assuming we are creating a plugin instead of embedding the CPT into functions.php
 
-function namespace_add_custom_types($query) {
+function ssws_namespace_add_custom_types($query) {
     if (is_category() || is_tag() && empty($query->query_vars['suppress_filters'])) {
         $query->set('post_type', array(
             'post',
@@ -131,7 +131,7 @@ function namespace_add_custom_types($query) {
     }
 }
 
-add_filter( 'pre_get_posts', 'namespace_add_custom_types' );
+add_filter( 'pre_get_posts', 'ssws_namespace_add_custom_types' );
 
 // http://css-tricks.com/snippets/wordpress/make-archives-php-include-custom-post-types/
 
@@ -140,7 +140,7 @@ add_filter( 'pre_get_posts', 'namespace_add_custom_types' );
 // Custom messages in the admin editor notifications bar,
 // just for CPT, not CT
 // ########################################################
-function custom_post_type_update_messages( $messages ) {
+function ssws_custom_post_type_update_messages( $messages ) {
     global $post;
 
     $post_ID = $post->ID;
@@ -166,7 +166,7 @@ function custom_post_type_update_messages( $messages ) {
     return $messages;
 }
 
-add_filter( 'post_updated_messages', 'custom_post_type_update_messages' );
+add_filter( 'post_updated_messages', 'ssws_custom_post_type_update_messages' );
 
 // http://thomasmaxson.com/update-messages-for-custom-post-types/
 
